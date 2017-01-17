@@ -12,10 +12,11 @@
 }
 
 #group {
-    position: absolute;
+    position: relative;
+    float: left;
 }
-    #group.group-row {
-        float: left;
+    #group.seat-row {
+        display: inline-flex;
     }
     #group:hover {
         box-shadow: 0 0 4px #aaa;
