@@ -1,0 +1,49 @@
+#map {
+    width: 840px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px solid gray;
+}
+
+#hall {
+    position: relative;
+}
+
+#group {
+    position: absolute;
+}
+    #group.group-row {
+        display: inline-flex;
+    }
+    #group:hover {
+        box-shadow: 0 0 4px #aaa;
+    }
+
+#seat {
+    height: 20px;
+    width: 20px;
+    margin: 2px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+}
+    #seat.empty {
+        background-color: #ddd;
+        border-color: #ccc;
+    }
+    #seat.taken {
+        background-color: #999;
+        border-color: #888;
+    }
+    #seat.online {
+        background-color: #55f;
+        border-color: #11c;
+    }
+    #seat.playing {
+        background-color: #2f2;
+        border-color: #0c0;
+    }
+    #seat:hover {
+        box-shadow: 0 0 4px #aaa;
+    }
