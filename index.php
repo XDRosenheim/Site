@@ -23,6 +23,8 @@
     <![endif]-->
 </head>
 <body>
+<button onclick="updateStyle()">Style</button>
+<button onclick="updatePage()">Page</button>
 <div class="container" id="content">
     <div class="row" id="pageCaller">
     <?php
@@ -35,14 +37,14 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-    /*var $content = $("#content"); // Where to load.
-    setInterval(function () {
+    var $content = $("#content"); // Where to load.
+    function updatePage() {
         $content.load("index.php #pageCaller"); // What to load
-    }, 10 * 1000); // Interval in milliseconds
+    };
     var $style = $("#head");
-    setInterval(function() {
-        $style.load("index.php #customStyle");
-    }, 10 * 1000);
+    function updateStyle() {
+        $style.load("index.php #customStyle"); // What to load
+    };
 </script>
 </body>
 </html>
