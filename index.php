@@ -10,9 +10,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $HTML_TITLE?></title>
-    <?php #require_once 'DBConn.php'; ?>
-    <!-- Bootstrap -->
-    <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Self style -->
     <link id="customStyle" rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -34,8 +31,6 @@
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="bootstrap-3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     var $content = $("#content"); // Where to load.
     function updatePage() {

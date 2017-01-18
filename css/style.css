@@ -21,9 +21,6 @@ body {
     #group.seat-row {
         display: inline-flex;
     }
-    #group:hover {
-        box-shadow: 0 0 4px #aaa;
-    }
 
 #seat {
     height: 20px;
@@ -33,6 +30,13 @@ body {
     border-style: solid;
     border-radius: 5px;
 }
+    #seat.seat-hidden {
+        background-color: #fff;
+        border-color: #fff;
+    }
+    #seat.seat-hidden:hover {
+        box-shadow: 0;
+    }
     #seat.empty {
         background-color: #ddd;
         border-color: #ccc;
