@@ -22,25 +22,27 @@ body {
   margin-right: auto;
   position: relative;
   border: 5px solid gray;
+  background-image: url("../Img/map.png");
 }
 
 #seat {
   height: 20px;
   width: 20px;
-  margin: 2px;
+  padding: 1px;
+  margin: 1px;
   border-width: 2px;
   border-style: solid;
   border-radius: 5px;
 }
   #seat.hidden {
-    background-color: #fff;
-    border-color: #fff;
+    background-color: transparent;
+    border-color: transparent;
   }
   #seat.hidden:hover {
-    box-shadow: 0 0 0;
+    /*box-shadow: 0 0 0;*/
   }
   #seat.empty {
-    background-color: #ddd;
+    background-color: #fff;
     border-color: #ccc;
   }
   #seat.taken {
