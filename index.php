@@ -10,6 +10,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php echo $HTML_TITLE?></title>
+  <?php require_once 'DBConn.php'; ?>
   <!-- Self style -->
   <link id="customStyle" rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -20,6 +21,13 @@
   <![endif]-->
 </head>
 <body>
+<?php
+  if ($DBConn->ping()) {
+    printf ("Our connection is ok!\n");
+  } else {
+    printf ("Error: %s\n", $DBConn->error);
+  }
+?>
 <button onclick="updateStyle()">Style</button>
 <button onclick="updatePage()">Page</button>
 <div id="content" style="float: left">
