@@ -2,9 +2,9 @@
   <div id="hall">
     <div id="group">
       <?php
+        $iteration = 0;
         for ($i=0; $i < 30; $i++) {
-          echo "<div id='row'>";
-          $iteration = 0;
+          echo "<div id='col'>";
           for ($j=0; $j < 23; $j++) {
             # empty | taken | online | playing | crew | vip
             if ($j == rand(0, 23)) {

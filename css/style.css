@@ -2,6 +2,10 @@ body {
   margin: 0;
 }
 
+#col {
+  float: left;
+}
+
 #group {
   position: relative;
   float: left;
@@ -18,10 +22,6 @@ body {
   margin-right: auto;
   position: relative;
   border: 5px solid gray;
-}
-
-#row {
-  float: left;
 }
 
 #seat {
