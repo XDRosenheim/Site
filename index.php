@@ -20,10 +20,9 @@
   <![endif]-->
 </head>
 <body>
-<p>Refesh buttons</p>
 <button onclick="updateStyle()">Style</button>
 <button onclick="updatePage()">Page</button>
-<div id="content" style="float: right">
+<div id="content" style="float: left">
   <div id="pageCaller">
   <?php
     include_once("canvas.php");

@@ -2,21 +2,30 @@
   <div id="hall">
     <div id="group">
       <?php
-        $haystack = [5,6,7,8,9,10];
+
+        $isSeatStack = [7,8,9,10,11,12,13,56,57,59,60,62,63,65,66,68,69,74,75,77,78,80,81,83,84,86,87];
+        $crewStack = [7,8,9,10,11,12,13];
+        $seatTakenStack = [];
+
         $iteration = 0;
-        $seatrows = 28;
-        $seatcols = 18;
+
+        # Room size
+        $seatrows = 28; # x axis
+        $seatcols = 18; # y axis
+
         for ($i=0; $i < $seatrows; $i++) {
           echo "<div id='col'>";
           for ($j=0; $j < $seatcols; $j++) {
             # empty | taken | online | playing | crew | vip
             # lgray | dgray |  blue  |  green  | yelo | orng
-            if ($j == 0 OR $j == 1 OR $j == $seatcols - 1 OR $j == $seatcols - 2) {
-              $SEAT_STATUS = "hidden";
-            } elseif (in_array($iteration, $haystack)) {
+            if (in_array($iteration, $crewStack)) {
               $SEAT_STATUS = "crew";
-            } else {
+            } elseif (in_array($iteration, $seatTakenStack)) {
+              $SEAT_STATUS = "taken";
+            } elseif (in_array($iteration, $isSeatStack)) {
               $SEAT_STATUS = "empty";
+            } else {
+              $SEAT_STATUS = "hidden";
             }
             echo '<div id="seat" class="' . $SEAT_STATUS . '" value="' . $iteration . '"></div>';
             $iteration += 1;
