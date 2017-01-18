@@ -2,19 +2,19 @@
   <div id="hall">
     <div id="group">
       <?php
+        $haystack = [5,6,7,8,9,10];
         $iteration = 0;
-        for ($i=0; $i < 30; $i++) {
+        $seatrows = 28;
+        $seatcols = 18;
+        for ($i=0; $i < $seatrows; $i++) {
           echo "<div id='col'>";
-          for ($j=0; $j < 23; $j++) {
+          for ($j=0; $j < $seatcols; $j++) {
             # empty | taken | online | playing | crew | vip
-            if ($j == rand(0, 23)) {
+            # lgray | dgray |  blue  |  green  | yelo | orng
+            if ($j == 0 OR $j == 1 OR $j == $seatcols - 1 OR $j == $seatcols - 2) {
               $SEAT_STATUS = "hidden";
-            } elseif ($j == rand(0, 23) OR $j == rand(0, 23) OR $j == rand(0, 23) OR $j == rand(0, 23)) {
-              $SEAT_STATUS = "playing";
-            } elseif ($j == rand(0, 23) OR $j == rand(0, 23)) {
-              $SEAT_STATUS = "online";
-            } elseif ($j == rand(0, 23) OR $j == rand(0, 23)) {
-              $SEAT_STATUS = "vip";
+            } elseif (in_array($iteration, $haystack)) {
+              $SEAT_STATUS = "crew";
             } else {
               $SEAT_STATUS = "empty";
             }

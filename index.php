@@ -20,9 +20,9 @@
   <![endif]-->
 </head>
 <body>
-<p style="float: left">Refesh buttons</p>
-<button onclick="updateStyle()" style="float: left">Style</button>
-<button onclick="updatePage()" style="float: left">Page</button>
+<p>Refesh buttons</p>
+<button onclick="updateStyle()">Style</button>
+<button onclick="updatePage()">Page</button>
 <div id="content" style="float: right">
   <div id="pageCaller">
   <?php
