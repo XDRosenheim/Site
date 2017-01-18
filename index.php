@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo $HTML_TITLE?></title>
-    <?php require_once 'DBConn.php'; ?>
+    <?php #require_once 'DBConn.php'; ?>
     <!-- Bootstrap -->
     <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Self style -->
