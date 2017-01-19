@@ -28,13 +28,20 @@
     printf ("Error: %s\n", $DBConn->error);
   }
 ?>
-<button onclick="updateStyle()">Style</button>
-<button onclick="updatePage()">Page</button>
+<br>
+<label for="mapRows">Rows</label>
+<input type="number" id="mapRows" name="mapRows">
+<label for="mapCols">Cols</label>
+<input type="number" id="mapCols" name="mapCols">
+<br>
+<button onclick="updatePage()">CLICK ME !</button>
+<br>
+
 <div id="content" style="float: left">
   <div id="pageCaller">
-  <?php
-    include_once("canvas.php");
-  ?>
+    <?php
+      include_once("canvas.php");
+    ?>
   </div>
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

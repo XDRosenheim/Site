@@ -1,67 +1,50 @@
-body {
-  margin: 0;
-}
-
-#col {
-  float: left;
-}
-
+body { margin: 0; }
+#col { float: left; }
 #group {
   position: relative;
   float: left;
 }
-
-#hall {
-  position: absolute;
-}
-
+#hall { position: absolute; }
 #map {
   width: 784px;
   height: 470px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  border: 5px solid gray;
+  border: 5px solid #808080;
   background-image: url("../Img/map.png");
 }
-
 #seat {
   height: 24px;
   width: 24px;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
+  cursor: pointer;
 }
   #seat.hidden {
-    background-color: transparent;
+    background-color: transparent !important;
     border-color: transparent;
-  }
-  #seat.hidden:hover {
-    /*box-shadow: 0 0 0;*/
+    cursor: default;
   }
   #seat.empty {
-    background-color: #fff;
-    border-color: #ccc;
+    background-color: #ffffff;
+    border-color: #cccccc;
   }
   #seat.taken {
-    background-color: #999;
-    border-color: #888;
+    background-color: #999999;
+    border-color: #888888;
+    color: #ffffff;
   }
   #seat.online {
-    background-color: #55f;
-    border-color: #11c;
+    background-color: #5555ff;
+    border-color: #1111cc;
+    color: #ffffff;
   }
   #seat.playing {
-    background-color: #2f2;
-    border-color: #0c0;
+    background-color: #4CFF00;
+    border-color: #00cc00;
   }
   #seat.crew {
     background-color: #f1f442;
     border-color: #ced136;
-  }
-  #seat.vip {
-    background-color: #ffca92;
-    border-color: #ff8400;
-  }
-  #seat:hover {
-    box-shadow: 0 0 4px #aaa;
   }
