@@ -26,13 +26,10 @@ body {
 }
 
 #seat {
-  height: 20px;
-  width: 20px;
-  padding: 1px;
-  margin: 1px;
+  height: 24px;
+  width: 24px;
   border-width: 2px;
   border-style: solid;
-  border-radius: 5px;
 }
   #seat.hidden {
     background-color: transparent;
