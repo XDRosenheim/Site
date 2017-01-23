@@ -1,0 +1,28 @@
+div.seatStyle_VIP {
+  color: white;
+  background-color: blue;
+}
+
+div.seatStyle_Crew {
+  color: black;
+  background-color: yellow;
+}
+
+div.seatCharts-row {
+  height: 25px;
+}
+
+div.seatCharts-cell {
+  width: 25px;
+  height: 25px;
+  margin: 0px;
+  border-radius: 0;
+}
+
+/*
+ * Hide row/col counters
+ */
+.seatCharts-row.seatCharts-header,
+div.seatCharts-row > div.seatCharts-cell:first-child {
+  display: none;
+}

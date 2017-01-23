@@ -13,7 +13,8 @@
   <?php require_once 'DBConn.php'; ?>
   <!-- Self style -->
   <link id="customStyle" rel="stylesheet" type="text/css" href="css/style.css">
-
+  <link rel="stylesheet" type="text/css" href="submodules/jQuery-Seat-Charts/jquery.seat-charts.css">
+  <link rel="stylesheet" type="text/css" href="css/hlpf_seatsStyling.css">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -23,27 +24,17 @@
 <body>
 <?php
   if ($DBConn->ping()) {
-    printf ("Our connection is ok!\n");
+    #printf ("Database: OK!\n");
   } else {
-    printf ("Error: %s\n", $DBConn->error);
+    printf ("Database Error: %s\n", $DBConn->error);
   }
 ?>
-<br>
-<label for="mapRows">Rows</label>
-<input type="number" id="mapRows" name="mapRows">
-<label for="mapCols">Cols</label>
-<input type="number" id="mapCols" name="mapCols">
-<br>
-<button onclick="updatePage()">CLICK ME !</button>
-<br>
-
-<div id="content" style="float: left">
-  <div id="pageCaller">
-    <?php
-      include_once("canvas.php");
-    ?>
-  </div>
+<div id="pageCaller">
+<?php
+  include_once("canvas.php");
+?>
 </div>
+<div id="seat-map"></div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -55,6 +46,58 @@
   function updateStyle() {
     $style.load("index.php #customStyle"); // What to load
   };
+</script>
+<?php
+  $result = $DBConn->query("SELECT * FROM  `Seatmap` WHERE  `SeatmapID` = 2");
+  if ($result -> num_rows) {
+    $row = $result->fetch_assoc();
+  }
+  #echo print_r($row);
+  $seats = str_split($row['SeatString'], $row['Width']);
+?>
+<script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  var sc = $('#seat-map').seatCharts({
+    map: [
+      <?php
+      for ($i=0; $i < count($seats); $i++) {
+        echo "'" . $seats[$i] . "',";
+      }
+      ?>
+    ],
+    seats: {
+      a: { price: 10, classes: 'seatStyle_VIP' },
+      b: { price: 20 },
+      c: { price: 30, classes: 'seatStyle_Crew' }
+    },
+    click: function () {
+      if (this.status() == 'available') {
+        //do some stuff, i.e. add to the cart
+        return 'selected';
+      } else if (this.status() == 'selected') {
+        //seat has been vacated
+        return 'available';
+      } else if (this.status() == 'unavailable') {
+        //seat has been already booked
+        return 'unavailable';
+      } else {
+        return this.style();
+      }
+    }
+  });
+
+  //Make all available 'c' seats unavailable
+  sc.find('c.available').status('unavailable');
+
+  //Make unavailable seats, unavailable...
+  sc.get(['1_1', '1_2', '1_3', '1_4']).status('unavailable');
+
+  console.log('Seat 1_1 costs ' + sc.get('1_1').data().price + ' and is currently ' + sc.status('1_1'));
+  console.log('Seat 1_2 costs ' + sc.get('1_2').data().price + ' and is currently ' + sc.status('1_2'));
+  console.log('Seat 1_3 costs ' + sc.get('1_3').data().price + ' and is currently ' + sc.status('1_3'));
+
+});
 </script>
 </body>
 </html>
