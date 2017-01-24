@@ -1,9 +1,8 @@
-div.seatStyle_VIP {
-  color: white;
-  background-color: blue;
+div.seatCharts-seat.unavailable {
+  background-color: #444444;
 }
 
-div.seatStyle_Crew {
+div.seatStyle_Crew.available {
   color: black;
   background-color: yellow;
 }
@@ -17,12 +16,4 @@ div.seatCharts-cell {
   height: 25px;
   margin: 0px;
   border-radius: 0;
-}
-
-/*
- * Hide row/col counters
- */
-.seatCharts-row.seatCharts-header,
-div.seatCharts-row > div.seatCharts-cell:first-child {
-  display: none;
 }

@@ -29,47 +29,42 @@
     printf ("Database Error: %s\n", $DBConn->error);
   }
 ?>
-<div id="pageCaller">
-<?php
-  include_once("canvas.php");
-?>
-</div>
 <div id="seat-map"></div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript">
-  var $content = $("#content"); // Where to load.
-  function updatePage() {
-    $content.load("index.php #pageCaller"); // What to load
-  };
-  var $style = $("#head");
-  function updateStyle() {
-    $style.load("index.php #customStyle"); // What to load
-  };
-</script>
 <?php
+  // TODO: UPDATE QUERY, GET ALL THE INFO.
   $result = $DBConn->query("SELECT * FROM  `Seatmap` WHERE  `SeatmapID` = 2");
   if ($result -> num_rows) {
     $row = $result->fetch_assoc();
+    #echo print_r($row);
+    $seats = str_split($row['SeatString'], $row['Width']);
   }
-  #echo print_r($row);
-  $seats = str_split($row['SeatString'], $row['Width']);
 ?>
-<script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.min.js"></script>
+<script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.js"></script>
+<?php #<script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.min.js"></script> ?>
 <script type="text/javascript">
 $(document).ready(function() {
   var sc = $('#seat-map').seatCharts({
     map: [
       <?php
       for ($i=0; $i < count($seats); $i++) {
-        echo "'" . $seats[$i] . "',";
+        echo "'";
+        $i_iteration = 0;
+        for ($j=0; $j < strlen($seats[$i]); $j++) {
+          if (substr($seats[$i], $j, 1) != "_") {
+            $i_iteration += 1;
+            // See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
+            // Grab a single seat in the row.    ## a[,LABEL]
+            echo substr($seats[$i], $j, 1) . "[" . $i . "," . $i_iteration . "]";
+          } else { echo substr($seats[$i], $j, 1); }
+        }
+        echo "',";
       }
-      ?>
-    ],
+      ?>],
     seats: {
-      a: { price: 10, classes: 'seatStyle_VIP' },
-      b: { price: 20 },
-      c: { price: 30, classes: 'seatStyle_Crew' }
+      a: { price: 10 },
+      c: { price: 20, classes: 'seatStyle_Crew' }
     },
     click: function () {
       if (this.status() == 'available') {
@@ -88,15 +83,12 @@ $(document).ready(function() {
   });
 
   //Make all available 'c' seats unavailable
-  sc.find('c.available').status('unavailable');
+  //sc.find('c.available').status('unavailable');
 
   //Make unavailable seats, unavailable...
-  sc.get(['1_1', '1_2', '1_3', '1_4']).status('unavailable');
+  //sc.get(['1_1', '1_2', '1_3', '1_4']).status('unavailable');
 
   console.log('Seat 1_1 costs ' + sc.get('1_1').data().price + ' and is currently ' + sc.status('1_1'));
-  console.log('Seat 1_2 costs ' + sc.get('1_2').data().price + ' and is currently ' + sc.status('1_2'));
-  console.log('Seat 1_3 costs ' + sc.get('1_3').data().price + ' and is currently ' + sc.status('1_3'));
-
 });
 </script>
 </body>
