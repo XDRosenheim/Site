@@ -59,11 +59,12 @@ $(document).ready(function() {
             $i_iteration += 1;
             // See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
             // Grab a single seat in the row.    ## a[,LABEL]
-            echo substr($seats[$i], $j, 1) . "[" . $i . "," . $i_iteration . "]";
+            echo substr($seats[$i], $j, 1) . "[" . ($i + 1) . "_" . $i_iteration . "," . $i_iteration . "]";
           } else { echo substr($seats[$i], $j, 1); }
         }
         echo "',";
       }
+      unset($seats, $result, $row, $i_iteration);
       ?>],
     seats: {
       a: { price: 10 },
