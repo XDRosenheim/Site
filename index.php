@@ -90,9 +90,21 @@ $(document).ready(function() {
   //sc.find('c.available').status('unavailable');
 
   //Make unavailable seats, unavailable...
-  //sc.get(['1_1', '1_2', '1_3', '1_4']).status('unavailable');
+  <?php
+    $query = "SELECT Tickets.SeatNumber FROM Tickets INNER JOIN TicketPrices ON Tickets.TicketPriceID = TicketPrices.TicketPriceID INNER JOIN Event ON TicketPrices.EventID = Event.EventID WHERE Event.EventID = 2";
+    $result = $DBConn->query($query);
+    if ($result -> num_rows) {
+      #echo print_r($row);
+      echo "sc.get([";
+      while ($row = $result->fetch_assoc()) {
+        echo "'" . $row['SeatNumber'] . "',";
+      }
+      echo "]).status('unavailable')";
+    }
+  ?>
 
-  console.log('Seat 1_1 costs ' + sc.get('1_1').data().price + ' and is currently ' + sc.status('1_1'));
+
+  console.log('Seat 1_4 costs ' + sc.get('1_4').data().price + ' and is currently ' + sc.status('1_4'));
 });
 </script>
 </body>
