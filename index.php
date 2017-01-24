@@ -32,6 +32,11 @@
 <div id="seat-map"></div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- jQuery UI -->
+<script type="text/javascript" src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<!-- jQuery-Seat-Charts -->
+<script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.js"></script>
+<!-- Mini-version <script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.min.js"></script> -->
 <?php
   // TODO: UPDATE QUERY, GET ALL THE INFO.
   $result = $DBConn->query("SELECT * FROM  `Seatmap` WHERE  `SeatmapID` = 2");
@@ -41,8 +46,6 @@
     $seats = str_split($row['SeatString'], $row['Width']);
   }
 ?>
-<script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.js"></script>
-<?php #<script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.min.js"></script> ?>
 <script type="text/javascript">
 $(document).ready(function() {
   var sc = $('#seat-map').seatCharts({
