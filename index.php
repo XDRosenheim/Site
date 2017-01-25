@@ -43,7 +43,7 @@
 <!-- Mini-version <script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.min.js"></script> -->
 <?php
   // TODO: UPDATE QUERY, GET ALL THE INFO.
-  $result = $DBConn->query("SELECT * FROM  `Seatmap` WHERE  `SeatmapID` = 2");
+  $result = $DBConn->query("SELECT * FROM  Seatmap ORDER BY  SeatmapID DESC LIMIT 1");
   if ($result -> num_rows) {
     $row = $result->fetch_assoc();
     #echo print_r($row);
@@ -59,7 +59,7 @@ $(document).ready(function() {
         echo "'";
         $i_iteration = 0;
         for ($j=0; $j < strlen($seats[$i]); $j++) {
-          if (substr($seats[$i], $j, 1) != "_" OR substr($seats[$i], $j, 1) != "c") {
+          if (substr($seats[$i], $j, 1) != "_") {
             $i_iteration += 1;
             // See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
             // Grab a single seat in the row.    ## a[ID,LABEL]
@@ -121,6 +121,7 @@ $(document).ready(function() {
       }
       echo "]).status('unavailable')";
     }
+    unset($row, $query, $result);
   ?>
 });
 </script>
