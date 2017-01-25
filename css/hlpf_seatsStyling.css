@@ -1,19 +1,4 @@
-div.seatCharts-seat.unavailable {
-  background-color: #444444;
-}
-
 div.seatStyle_Crew.available {
   color: black;
   background-color: yellow;
-}
-
-div.seatCharts-row {
-  height: 25px;
-}
-
-div.seatCharts-cell {
-  width: 25px;
-  height: 25px;
-  margin: 0px;
-  border-radius: 0;
 }

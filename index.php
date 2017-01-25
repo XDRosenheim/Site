@@ -58,7 +58,7 @@ $(document).ready(function() {
           if (substr($seats[$i], $j, 1) != "_") {
             $i_iteration += 1;
             // See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
-            // Grab a single seat in the row.    ## a[,LABEL]
+            // Grab a single seat in the row.    ## a[ID,LABEL]
             echo substr($seats[$i], $j, 1) . "[" . ($i + 1) . "_" . $i_iteration . "," . $i_iteration . "]";
           } else { echo substr($seats[$i], $j, 1); }
         }
@@ -85,7 +85,6 @@ $(document).ready(function() {
       }
     }
   });
-
   //Make all available 'c' seats unavailable
   //sc.find('c.available').status('unavailable');
 
@@ -102,9 +101,6 @@ $(document).ready(function() {
       echo "]).status('unavailable')";
     }
   ?>
-
-
-  console.log('Seat 1_4 costs ' + sc.get('1_4').data().price + ' and is currently ' + sc.status('1_4'));
 });
 </script>
 </body>
