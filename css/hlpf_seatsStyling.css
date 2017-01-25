@@ -1,4 +1,4 @@
-div.seatStyle_Crew.available {
+div.seatStyle_Crew.unavailable {
   color: black;
   background-color: yellow;
 }

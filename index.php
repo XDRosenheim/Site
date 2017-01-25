@@ -30,6 +30,10 @@
   }
 ?>
 <div id="seat-map"></div>
+<div id="seat-map-legend"></div>
+<h3><span id="counter"></span></h3>
+<div id="cart"></div>
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!-- jQuery UI -->
@@ -55,7 +59,7 @@ $(document).ready(function() {
         echo "'";
         $i_iteration = 0;
         for ($j=0; $j < strlen($seats[$i]); $j++) {
-          if (substr($seats[$i], $j, 1) != "_") {
+          if (substr($seats[$i], $j, 1) != "_" OR substr($seats[$i], $j, 1) != "c") {
             $i_iteration += 1;
             // See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
             // Grab a single seat in the row.    ## a[ID,LABEL]
@@ -64,11 +68,28 @@ $(document).ready(function() {
         }
         echo "',";
       }
-      unset($seats, $result, $row, $i_iteration);
+      unset($seats, $result, $i_iteration);
       ?>],
     seats: {
-      a: { price: 10 },
-      c: { price: 20, classes: 'seatStyle_Crew' }
+      a: {
+        price: 10,
+        category : 'Normal plads',
+        description : 'Normal plads.'
+      },
+      c: {
+        price: 20,
+        category : 'Crew plads',
+        classes: 'seatStyle_Crew',
+        description : 'Kun til crew.'
+      }
+    },
+    legend : {
+      node  : $('#seat-map-legend'),
+      items : [
+        [ 'a', 'available', 'Fri plads' ],
+        <?php if (strpos($row['SeatString'], "c")) { echo "[ 'c', 'unavailable', 'Crew plads'],"; } ?>
+        [ 'a', 'unavailable', 'Optaget' ]
+      ]
     },
     click: function () {
       if (this.status() == 'available') {
@@ -86,7 +107,7 @@ $(document).ready(function() {
     }
   });
   //Make all available 'c' seats unavailable
-  //sc.find('c.available').status('unavailable');
+  sc.find('c.available').status('unavailable');
 
   //Make unavailable seats, unavailable...
   <?php
