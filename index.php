@@ -2,6 +2,7 @@
   if (! isset($HTML_TITLE) OR $HTML_TITLE == "") {
     $HTML_TITLE = "Front page";
   }
+  include 'functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,16 +24,13 @@
 </head>
 <body>
 <?php
-  if ($DBConn->ping()) {
-    #printf ("Database: OK!\n");
-  } else {
+  if (! $DBConn->ping()) {
     printf ("Database Error: %s\n", $DBConn->error);
+    exit();
   }
 ?>
 <div id="seat-map"></div>
 <div id="seat-map-legend"></div>
-<h3><span id="counter"></span></h3>
-<div id="cart"></div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -43,41 +41,26 @@
 <!-- Mini-version <script type="text/javascript" src="submodules/jQuery-Seat-Charts/jquery.seat-charts.min.js"></script> -->
 <?php
   // TODO: UPDATE QUERY, GET ALL THE INFO.
-  $result = $DBConn->query("SELECT * FROM  Seatmap ORDER BY  SeatmapID DESC LIMIT 1");
+  //$result = $DBConn->query("SELECT * FROM Seatmap ORDER BY SeatmapID DESC LIMIT 1");
+  $result = $DBConn->query("SELECT * FROM Seatmap WHERE SeatmapID = 2");
   if ($result -> num_rows) {
     $row = $result->fetch_assoc();
     #echo print_r($row);
-    $seats = str_split($row['SeatString'], $row['Width']);
+    //$seats = str_split($row['SeatString'], $row['Width']);
   }
 ?>
 <script type="text/javascript">
 $(document).ready(function() {
   var sc = $('#seat-map').seatCharts({
     map: [
-      <?php
-      for ($i=0; $i < count($seats); $i++) {
-        echo "'";
-        $i_iteration = 0;
-        for ($j=0; $j < strlen($seats[$i]); $j++) {
-          if (substr($seats[$i], $j, 1) != "_") {
-            $i_iteration += 1;
-            // See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
-            // Grab a single seat in the row.    ## a[ID,LABEL]
-            echo substr($seats[$i], $j, 1) . "[" . ($i + 1) . "_" . $i_iteration . "," . $i_iteration . "]";
-          } else { echo substr($seats[$i], $j, 1); }
-        }
-        echo "',";
-      }
-      unset($seats, $result, $i_iteration);
-      ?>],
+      <?php seatmap_generation($row['SeatString'], $row['Width']) ?>
+    ],
     seats: {
       a: {
-        price: 10,
         category : 'Normal plads',
         description : 'Normal plads.'
       },
       c: {
-        price: 20,
         category : 'Crew plads',
         classes: 'seatStyle_Crew',
         description : 'Kun til crew.'
@@ -87,7 +70,7 @@ $(document).ready(function() {
       node  : $('#seat-map-legend'),
       items : [
         [ 'a', 'available', 'Fri plads' ],
-        <?php if (strpos($row['SeatString'], "c")) { echo "[ 'c', 'unavailable', 'Crew plads'],"; } ?>
+        [ 'c', 'unavailable', 'Crew plads'],
         [ 'a', 'unavailable', 'Optaget' ]
       ]
     },
@@ -107,7 +90,7 @@ $(document).ready(function() {
     }
   });
   //Make all available 'c' seats unavailable
-  sc.find('c.available').status('unavailable');
+  sc.find('c').status('unavailable');
 
   //Make unavailable seats, unavailable...
   <?php
@@ -123,6 +106,7 @@ $(document).ready(function() {
     }
     unset($row, $query, $result);
   ?>
+
 });
 </script>
 </body>
