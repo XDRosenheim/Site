@@ -6,13 +6,13 @@ body { margin: 0; }
 }
 #hall { position: absolute; }
 #map {
-  width: 784px;
-  height: 470px;
+  border: 4px solid darkgrey;
+  width: auto;
+  height: auto;
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  border: 5px solid #808080;
-  background-image: url("../Img/map.png");
+  background-repeat: no-repeat;
 }
 #seat {
   height: 24px;

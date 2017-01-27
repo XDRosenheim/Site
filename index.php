@@ -16,6 +16,7 @@
   <link id="customStyle" rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="submodules/jQuery-Seat-Charts/jquery.seat-charts.css">
   <link rel="stylesheet" type="text/css" href="css/hlpf_seatsStyling.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -29,7 +30,9 @@
     exit();
   }
 ?>
-<div id="seat-map"></div>
+<div style="float: left" id="map">
+  <div id="seat-map"></div>
+</div>
 <div id="seat-map-legend"></div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -52,25 +55,22 @@
 <script type="text/javascript">
 $(document).ready(function() {
   var sc = $('#seat-map').seatCharts({
-    map: [
-      <?php seatmap_generation($row['SeatString'], $row['Width']) ?>
-    ],
+    map: [<?php seatmap_generation($row['SeatString'], $row['Width']) ?>],
     seats: {
-      a: {
-        category : 'Normal plads',
-        description : 'Normal plads.'
-      },
-      c: {
-        category : 'Crew plads',
-        classes: 'seatStyle_Crew',
-        description : 'Kun til crew.'
-      }
+      A: { classes: 'seatStyle_Arkade' },
+      b: { classes: 'seatStyle_Stage' },
+      c: { classes: 'seatStyle_Crew' },
+      k: { classes: 'seatStyle_Kiosk' },
+      n: { classes: 'seatStyle_Nothing' }
     },
     legend : {
       node  : $('#seat-map-legend'),
       items : [
         [ 'a', 'available', 'Fri plads' ],
         [ 'c', 'unavailable', 'Crew plads'],
+        [ 'b', 'unavailable', 'Scene / Storskærm'],
+        [ 'A', 'unavailable', 'Arkade'],
+        [ 'k', 'unavailable', 'Kiosk'],
         [ 'a', 'unavailable', 'Optaget' ]
       ]
     },
@@ -90,7 +90,11 @@ $(document).ready(function() {
     }
   });
   //Make all available 'c' seats unavailable
-  sc.find('c').status('unavailable');
+  sc.find('A.available').status('unavailable');
+  sc.find('c.available').status('unavailable');
+  sc.find('b.available').status('unavailable');
+  sc.find('n.available').status('unavailable');
+  sc.find('k.available').status('unavailable');
 
   //Make unavailable seats, unavailable...
   <?php
@@ -106,7 +110,6 @@ $(document).ready(function() {
     }
     unset($row, $query, $result);
   ?>
-
 });
 </script>
 </body>
