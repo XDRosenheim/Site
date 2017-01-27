@@ -58,7 +58,7 @@ $(document).ready(function() {
     map: [<?php seatmap_generation($row['SeatString'], $row['Width']) ?>],
     seats: {
       A: { classes: 'seatStyle_Arkade' },
-      b: { classes: 'seatStyle_Stage' },
+      s: { classes: 'seatStyle_Stage' },
       c: { classes: 'seatStyle_Crew' },
       k: { classes: 'seatStyle_Kiosk' },
       n: { classes: 'seatStyle_Nothing' }
@@ -68,7 +68,7 @@ $(document).ready(function() {
       items : [
         [ 'a', 'available', 'Fri plads' ],
         [ 'c', 'unavailable', 'Crew plads'],
-        [ 'b', 'unavailable', 'Scene / Storskærm'],
+        [ 's', 'unavailable', 'Scene / Storskærm'],
         [ 'A', 'unavailable', 'Arkade'],
         [ 'k', 'unavailable', 'Kiosk'],
         [ 'a', 'unavailable', 'Optaget' ]
@@ -92,7 +92,7 @@ $(document).ready(function() {
   //Make all available 'c' seats unavailable
   sc.find('A.available').status('unavailable');
   sc.find('c.available').status('unavailable');
-  sc.find('b.available').status('unavailable');
+  sc.find('s.available').status('unavailable');
   sc.find('n.available').status('unavailable');
   sc.find('k.available').status('unavailable');
 

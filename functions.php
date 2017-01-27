@@ -30,9 +30,8 @@ function seatmap_generation($seatgen_SeatString, $seatgen_Width) {
       if ( (substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) == "_") ||
            (substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) == "n") ||
            (substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) == "k") ||
+           (substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) == "s") ||
            (substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) == "A") ) {
-        echo substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) . "[,_]";
-      } elseif (substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) == "b") {
         echo substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) . "[,_]";
       // If the current character is a C, give it an unique ID with "C" as it's label.
       } elseif (substr($seatgen_Seats[$seatgen_i], $seatgen_j, 1) == "c") {
