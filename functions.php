@@ -1,12 +1,22 @@
 <?php
+/*
+  Author: Patrick Rosenheim
+  Date: 26 / 01 - 2017
+
+  Copyright Nope 2017
+
+  See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
+  for more on seatmaps.
+
+  Description:
+  This function is to be used with @mateuszmarkowski's jQuery-Seat-Charts
+
+  @return void
+*/
 function seatmap_generation($seatgen_SeatString, $seatgen_Width) {
   // Convert the $seatgen_SeatString to an array.
   // Each line must be $seatgen_Width long.
   $seatgen_Seats = str_split($seatgen_SeatString, $seatgen_Width);
-
-  // See https://github.com/mateuszmarkowski/jQuery-Seat-Charts#map
-  // for more on seatmaps.
-
   // Loop for each line in $seatgen_Seats.
   for ($seatgen_i=0; $seatgen_i < count($seatgen_Seats); $seatgen_i++) {
     // Start a new line.
