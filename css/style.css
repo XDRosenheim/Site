@@ -1,10 +1,4 @@
 body { margin: 0; }
-#col { float: left; }
-#group {
-  position: relative;
-  float: left;
-}
-#hall { position: absolute; }
 #map {
   border: 4px solid darkgrey;
   width: auto;
@@ -14,37 +8,3 @@ body { margin: 0; }
   position: relative;
   background-repeat: no-repeat;
 }
-#seat {
-  height: 24px;
-  width: 24px;
-  border-width: 1px;
-  border-style: solid;
-  cursor: pointer;
-}
-  #seat.hidden {
-    background-color: transparent !important;
-    border-color: transparent;
-    cursor: default;
-  }
-  #seat.empty {
-    background-color: #ffffff;
-    border-color: #cccccc;
-  }
-  #seat.taken {
-    background-color: #999999;
-    border-color: #888888;
-    color: #ffffff;
-  }
-  #seat.online {
-    background-color: #5555ff;
-    border-color: #1111cc;
-    color: #ffffff;
-  }
-  #seat.playing {
-    background-color: #4CFF00;
-    border-color: #00cc00;
-  }
-  #seat.crew {
-    background-color: #f1f442;
-    border-color: #ced136;
-  }
